@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swamy's Chicken &amp; Chai</title>
+  <meta name="description" content="Crispy chicken tenders, Indian sauces on the side, a heat level for everyone and real masala chai. Follow @eat.swamys for pop-up dates.">
+  <meta name="theme-color" content="#1A1A1A">
+  <meta property="og:title" content="Swamy's Chicken &amp; Chai">
+  <meta property="og:description" content="Crispy tenders. Indian sauces. Real chai. Stay saucy.">
+  <meta property="og:image" content="https://eatswamys.com/sher.png">
+  <meta property="og:url" content="https://eatswamys.com/">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <!--
+    Swamy's site v3: Sam Lazarus's look (palette, type, tiger) + the swamys-public story,
+    under current brand decisions. Notes: brand/26_11_05_Swamys_Website_Assessment_v1.md
+    Contrast rules: text on orange is dark, or white only at headline size. Yellow only on dark.
+  -->
+  <style>
+    :root {
+      --orange: #F56824;
+      --orange-dark: #D8500A;
+      --orange-text: #B04000;  /* orange for small text on cream or white (passes 4.5:1) */
+      --yellow: #F5D320;
+      --red: #F52043;
+      --cream: #F4F2EE;
+      --white: #FFFFFF;
+      --gray: #5E5F63;      /* darkened from #6E6F73 so body text passes 4.5:1 on cream */
+      --dark: #1A1A1A;
+      --navy: #2E3558;
+      --line: #E2DED6;
+      --radius: 20px;
+      --gutter: clamp(16px, 5vw, 72px);
+      --max: 1180px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: 'Nunito', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .skip {
+      position: absolute; left: 12px; top: -60px; z-index: 2000;
+      background: var(--yellow); color: var(--dark); padding: 10px 16px; border-radius: 8px;
+      font-weight: 800; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+
+    .display { font-family: 'Bebas Neue', Impact, sans-serif; font-weight: 400; letter-spacing: 1px; line-height: 0.92; }
+    .label {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px;
+      letter-spacing: 4px; text-transform: uppercase;
+    }
+
+    /* Nav: dark, so small white links pass contrast */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--dark); color: var(--white);
+      border-bottom: 3px solid var(--orange);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand img { width: 44px; height: 44px; }
+    .brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 2px; line-height: 1; display: block; }
+    .brand-sub { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--yellow); display: block; }
+    .nav ul { display: flex; align-items: center; gap: 26px; list-style: none; }
+    .nav ul a { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; }
+    .nav ul a:hover { color: var(--yellow); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 2px;
+      padding: 12px 28px; border-radius: 999px; text-decoration: none;
+      border: 3px solid var(--dark); transition: transform .15s, background .15s, color .15s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-dark { background: var(--dark); color: var(--white); }
+    .btn-dark:hover { background: var(--yellow); color: var(--dark); }
+    .btn-line { background: transparent; color: var(--dark); }
+    .btn-line:hover { background: var(--dark); color: var(--white); }
+    .btn-orange { background: var(--orange); color: var(--dark); border-color: var(--orange); }
+    .btn-orange:hover { background: var(--yellow); border-color: var(--yellow); }
+    .nav ul a.btn { font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; padding: 8px 20px; border-color: var(--orange); }
+    @media (max-width: 860px) { .nav ul li:not(.keep) { display: none; } }
+    @media (max-width: 420px) { .brand-sub { display: none; } .nav ul a.btn { padding: 8px 14px; } }
+
+    /* Hero: Sam's orange. Big white type passes as large text; the accent line is dark. */
+    .hero { background: var(--orange); position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none;
+      background-image: radial-gradient(rgba(26,26,26,.12) 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
+    }
+    .hero .wrap {
+      position: relative; display: grid; grid-template-columns: 1.15fr .85fr;
+      align-items: center; gap: 40px; padding-top: 72px; padding-bottom: 88px;
+    }
+    .hero .label { color: var(--dark); display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .hero .label::before { content: ""; width: 36px; height: 3px; background: var(--dark); }
+    .hero h1 { font-size: clamp(64px, 10.5vw, 150px); color: var(--white); text-shadow: 4px 4px 0 var(--orange-dark); margin-bottom: 26px; }
+    .hero h1 span { display: block; }
+    .hero h1 .accent { color: var(--dark); text-shadow: none; }
+    .hero .tagline { font-size: clamp(40px, 5vw, 56px); color: var(--white); text-shadow: 3px 3px 0 var(--orange-dark); margin: -14px 0 30px; }
+    .hero p.lede { font-size: 20px; font-weight: 800; color: var(--dark); max-width: 30ch; margin-bottom: 34px; }
+    .hero .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .mascot {
+      justify-self: center; width: min(420px, 80vw); aspect-ratio: 1;
+      border-radius: 50%; background: var(--dark); padding: 10px;
+      box-shadow: 0 30px 60px rgba(26,26,26,.35);
+    }
+    .mascot img { width: 100%; height: 100%; border-radius: 50%; }
+    @media (max-width: 860px) {
+      .hero .wrap { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 64px; }
+      .mascot { order: -1; width: min(240px, 60vw); }
+    }
+
+    /* Ticker */
+    .ticker { background: var(--dark); color: var(--yellow); overflow: hidden; border-block: 3px solid var(--orange); }
+    .ticker-track { display: flex; width: max-content; animation: tick 40s linear infinite; }
+    .ticker ul { display: flex; list-style: none; }
+    .ticker li { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; padding: 12px 22px; white-space: nowrap; }
+    .ticker li::after { content: "✦"; color: var(--orange); margin-left: 44px; }
+    @keyframes tick { to { transform: translateX(-50%); } }
+
+    /* Sections */
+    section { padding: 96px 0; }
+    .section-head { margin-bottom: 44px; max-width: 720px; }
+    .section-head .label { color: var(--orange-text); margin-bottom: 10px; display: block; }
+    .on-dark .section-head .label { color: var(--orange); }
+    .section-head h2 { font-size: clamp(48px, 7vw, 88px); }
+    .section-head p { font-size: 19px; color: var(--gray); margin-top: 14px; }
+    .on-dark { background: var(--dark); color: var(--white); }
+    .on-dark .section-head p { color: #CFCFCF; }
+
+    /* How to order */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; list-style: none; counter-reset: step; }
+    .steps li {
+      background: var(--white); border: 2px solid var(--line); border-radius: var(--radius);
+      padding: 26px 22px; counter-increment: step;
+    }
+    .steps li::before {
+      content: counter(step); display: grid; place-items: center;
+      width: 46px; height: 46px; border-radius: 50%; margin-bottom: 14px;
+      background: var(--orange); color: var(--dark);
+      font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+    }
+    .steps h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 1px; line-height: 1; margin-bottom: 8px; }
+    .steps p { color: var(--gray); }
+    @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+    /* Menu */
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; border: 2px solid var(--line); display: flex; flex-direction: column; }
+    .card-media { aspect-ratio: 4 / 5; background: #e9e5de; position: relative; }
+    .card-media video, .card-media img { width: 100%; height: 100%; object-fit: cover; }
+    .card-media .tag {
+      position: absolute; left: 14px; top: 14px; background: var(--dark); color: var(--white);
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; padding: 6px 10px; border-radius: 999px;
+    }
+    .card-body { padding: 22px 22px 26px; }
+    .card h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 36px; letter-spacing: 1px; line-height: 1; margin-bottom: 8px; }
+    .card p { color: var(--gray); }
+    .fineprint { font-size: 14px; color: var(--gray); margin-top: 18px; }
+    @media (max-width: 900px) { .menu-grid { grid-template-columns: 1fr; max-width: 440px; } }
+
+    /* Sauces */
+    .sauce-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; list-style: none; }
+    .sauce { border: 2px solid #3A3A3A; border-radius: var(--radius); padding: 26px 22px; }
+    .sauce .dot { width: 54px; height: 54px; border-radius: 50%; margin-bottom: 16px; border: 3px solid var(--white); }
+    .sauce h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 1px; line-height: 1; color: var(--yellow); margin-bottom: 8px; }
+    .sauce p { color: #DADADA; }
+    @media (max-width: 860px) { .sauce-grid { grid-template-columns: 1fr; } }
+
+    /* Heat ladder */
+    .heat { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; list-style: none; }
+    .heat li { border-radius: 16px; padding: 22px 16px 20px; color: var(--dark); min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; }
+    .heat .n { font-family: 'Bebas Neue', sans-serif; font-size: 54px; line-height: 1; }
+    .heat .name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; line-height: 1; }
+    .heat li:nth-child(1) { background: #FFF1C2; }
+    .heat li:nth-child(2) { background: var(--yellow); }
+    .heat li:nth-child(3) { background: #F8A15E; }
+    .heat li:nth-child(4) { background: var(--orange); }
+    .heat li:nth-child(5) { background: var(--dark); color: var(--white); }
+    .heat li:nth-child(5) .n { color: var(--orange); }
+    @media (max-width: 760px) {
+      .heat { grid-template-columns: 1fr; }
+      .heat li { min-height: 0; flex-direction: row; align-items: center; gap: 18px; justify-content: flex-start; padding: 14px 18px; }
+      .heat .n { font-size: 40px; width: 28px; }
+    }
+
+    /* Drinks */
+    .drinks { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 18px; }
+    .drink { border-radius: var(--radius); padding: 30px 26px; background: var(--white); border: 2px solid var(--line); }
+    .drink.feature { background: var(--orange); border-color: var(--orange); }
+    .drink .label { color: var(--orange-text); }
+    .drink.feature .label { color: var(--dark); }
+    .drink h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 44px; letter-spacing: 1px; line-height: 1; margin: 10px 0 10px; }
+    .drink p { color: var(--gray); }
+    .drink.feature p { color: var(--dark); font-weight: 700; }
+    @media (max-width: 900px) { .drinks { grid-template-columns: 1fr; } }
+
+    /* Story */
+    .story { background: var(--white); }
+    .story .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+    .story blockquote {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5.4vw, 68px); line-height: .98;
+      border-left: 8px solid var(--orange); padding-left: 24px;
+    }
+    .story .letter p { font-size: 18px; margin-bottom: 16px; }
+    .story .sign { font-weight: 900; }
+    .story .sign span { display: block; font-weight: 700; color: var(--gray); }
+    @media (max-width: 860px) { .story .wrap { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* Tiger */
+    .tiger-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; list-style: none; }
+    .tiger-grid li { background: var(--white); border: 2px solid var(--line); border-radius: var(--radius); padding: 26px 22px; }
+    .tiger-grid h3 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 32px; letter-spacing: 1px; line-height: 1; margin-bottom: 8px; }
+    .tiger-grid p { color: var(--gray); }
+    @media (max-width: 860px) { .tiger-grid { grid-template-columns: 1fr; } }
+
+    /* Follow */
+    .follow { background: var(--orange); text-align: center; padding: 88px 0; }
+    .follow h2 { font-size: clamp(52px, 8vw, 104px); color: var(--white); text-shadow: 4px 4px 0 var(--orange-dark); }
+    .follow p { font-size: 20px; font-weight: 800; color: var(--dark); margin: 14px auto 30px; max-width: 34ch; }
+
+    footer { background: var(--dark); color: #D6D6D6; padding: 44px 0; font-size: 15px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; }
+    footer .brand-name { color: var(--white); }
+    footer a { color: var(--yellow); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker-track { animation: none; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Swamy's Chicken and Chai, back to top">
+      <img src="favicon.png" alt="" width="44" height="44">
+      <span>
+        <span class="brand-name">SWAMY'S</span>
+        <span class="brand-sub">Chicken &amp; Chai</span>
+      </span>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#sauces">Sauces</a></li>
+        <li><a href="#heat">Heat</a></li>
+        <li><a href="#story">Story</a></li>
+        <li class="keep"><a class="btn btn-orange" href="https://www.instagram.com/eat.swamys/">Follow us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <!-- TAGLINE: "Stay saucy" kept for now by Amruth's call (Nov 5, 2026) despite the trademark risk in D-0015. Swap it here, in the ticker, the "Stay saucy." follow section, the footer and og:description when a replacement is picked. -->
+        <p class="label">Indian fast food</p>
+        <h1 class="display">
+          <span>Crispy tenders.</span>
+          <span class="accent">Indian sauces.</span>
+          <span>Real chai.</span>
+        </h1>
+        <p class="lede">The fast-food order you already know, with the flavor of an Indian kitchen.</p>
+        <p class="tagline display">Stay saucy.</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="#menu">See the menu</a>
+          <a class="btn btn-line" href="https://www.instagram.com/eat.swamys/">Get pop-up dates</a>
+        </div>
+      </div>
+      <div class="mascot">
+        <img src="sher.png" width="512" height="512"
+             alt="Sher, the Swamy's tiger, in sunglasses, holding a Swamy's bag and fries">
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <ul>
+        <li>Chicken tenders</li><li>Popcorn paneer</li><li>Masala fries</li><li>Three sauces</li>
+        <li>Five heat levels</li><li>Stay saucy</li><li>Masala chai</li><li>Mango lassi shake</li><li>Masala chai shake</li>
+      </ul>
+      <ul>
+        <li>Chicken tenders</li><li>Popcorn paneer</li><li>Masala fries</li><li>Three sauces</li>
+        <li>Five heat levels</li><li>Stay saucy</li><li>Masala chai</li><li>Mango lassi shake</li><li>Masala chai shake</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="order" aria-labelledby="order-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Nothing to decode</span>
+        <h2 class="display" id="order-h">How to order</h2>
+        <p>If you've ordered tenders and fries before, you already know how this works.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Pick your protein</h3><p>Chicken tenders or popcorn paneer.</p></li>
+        <li><h3>Pick your heat</h3><p>Five levels, so everyone at the table gets their own.</p></li>
+        <li><h3>Pick your sauces</h3><p>On the side, so you can dip and compare.</p></li>
+        <li><h3>Make it a Swamy's</h3><p>Add a masala chai with a Parle-G biscuit.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="menu" aria-labelledby="menu-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">What we serve</span>
+        <h2 class="display" id="menu-h">The menu</h2>
+      </div>
+      <div class="menu-grid">
+        <article class="card">
+          <div class="card-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="popcorn-chicken.jpg" aria-hidden="true">
+              <source src="popcorn-chicken.mp4" type="video/mp4">
+            </video>
+            <span class="tag">Chicken</span>
+          </div>
+          <div class="card-body">
+            <h3>Chicken tenders</h3>
+            <p>Marinated overnight in Indian spices and fried crisp. Built for dipping.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="paneer-cubes.jpg" aria-hidden="true">
+              <source src="paneer-cubes.mp4" type="video/mp4">
+            </video>
+            <span class="tag">Vegetarian</span>
+          </div>
+          <div class="card-body">
+            <h3>Popcorn paneer</h3>
+            <p>Indian cottage cheese in our spice blend. Crisp outside, soft inside.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-media">
+            <video autoplay muted loop playsinline preload="metadata" poster="fries.jpg" aria-hidden="true">
+              <source src="fries.mp4" type="video/mp4">
+            </video>
+            <span class="tag">Side</span>
+          </div>
+          <div class="card-body">
+            <h3>Masala fries</h3>
+            <p>Golden fries with a masala dust. The best way to try every sauce.</p>
+          </div>
+        </article>
+      </div>
+      <p class="fineprint">Food shots are concept renders. Real photos come from our first pop-up. The menu changes as we test, and allergen details are available on request.</p>
+    </div>
+  </section>
+
+  <section id="sauces" class="on-dark" aria-labelledby="sauces-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">The main event</span>
+        <h2 class="display" id="sauces-h">Sauces</h2>
+        <p>Indian flavor arrives in the dip. Every sauce comes on the side, so trying something new is easy.</p>
+      </div>
+      <ul class="sauce-grid">
+        <li class="sauce"><div class="dot" style="background:#4E9A3A" aria-hidden="true"></div><h3>Mint Coriander Mayo</h3><p>Fresh, herby and cooling. The classic Indian green chutney, made into a creamy dip.</p></li>
+        <li class="sauce"><div class="dot" style="background:#E3B23C" aria-hidden="true"></div><h3>Aachari Ginger Mayo</h3><p>Tangy pickle spices meet warm ginger heat. Bold and completely addictive.</p></li>
+        <li class="sauce"><div class="dot" style="background:#E0662B" aria-hidden="true"></div><h3>Butter Masala Mayo</h3><p>Rich, creamy and smoky. The taste of butter chicken, in dipping-sauce form.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="heat" aria-labelledby="heat-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Everyone picks their own</span>
+        <h2 class="display" id="heat-h">The heat ladder</h2>
+        <p>Nobody should have to guess the spice level in front of their friends.</p>
+      </div>
+      <ol class="heat">
+        <li><span class="n">1</span><span class="name">Wee Baby</span></li>
+        <li><span class="n">2</span><span class="name">Mild</span></li>
+        <li><span class="n">3</span><span class="name">Medium</span></li>
+        <li><span class="n">4</span><span class="name">Spicy</span></li>
+        <li><span class="n">5</span><span class="name">Andhra Fire</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="drinks" aria-labelledby="drinks-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">The chai in Chicken &amp; Chai</span>
+        <h2 class="display" id="drinks-h">Drinks</h2>
+      </div>
+      <div class="drinks">
+        <article class="drink feature">
+          <span class="label">Signature</span>
+          <h3>Masala chai</h3>
+          <p>Brewed with spices and served with a Parle-G biscuit, the way an Indian home greets a guest.</p>
+        </article>
+        <article class="drink">
+          <span class="label">Milkshake</span>
+          <h3>Mango lassi shake</h3>
+          <p>Mango and yogurt, blended thick.</p>
+        </article>
+        <article class="drink">
+          <span class="label">Milkshake</span>
+          <h3>Masala chai shake</h3>
+          <p>Our chai, cold and creamy.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story" aria-labelledby="story-h">
+    <div class="wrap">
+      <div>
+        <span class="label" style="color:var(--orange-text)">Our story</span>
+        <h2 class="visually-hidden" id="story-h" style="position:absolute;left:-9999px">Our story</h2>
+        <blockquote style="margin-top:14px">It started on a road trip, looking for a taste of home.</blockquote>
+      </div>
+      <div class="letter">
+        <p>"I was born in India, and when my family first moved to the US, we loved to take road trips to explore our new home. While driving we were always on the lookout for two things: a taste of home, and vegetarian options. Neither was readily available."</p>
+        <p>Swamy's is the place I wished we'd found. It's the food I grew up on, served the way I always wished I could order it: fast, easy and full of flavor. Crispy tenders, golden fries, sauces I'd put on everything, and a cup of chai to bring it home.</p>
+        <p>Real Indian flavors, no watering down. Come hungry. Eat with your hands. Stay a while.</p>
+        <p class="sign">Amruth<span>Founder, Swamy's</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tiger" aria-labelledby="tiger-h">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="label">Meet Sher</span>
+        <h2 class="display" id="tiger-h">The tiger in the shades</h2>
+        <p>We take the food seriously, and ourselves not at all.</p>
+      </div>
+      <ul class="tiger-grid">
+        <li><h3>The shades</h3><p>Laid-back and playful.</p></li>
+        <li><h3>The tiger</h3><p>India's national animal. Strong, confident and bold.</p></li>
+        <li><h3>The orange</h3><p>A nod to Indian heritage, and to people coming together over a great meal.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="follow">
+    <div class="wrap">
+      <h2 class="display">Stay saucy.</h2>
+      <p>Pop-up dates, new sauces and first tastes go to Instagram first.</p>
+      <a class="btn btn-dark" href="https://www.instagram.com/eat.swamys/">Follow @eat.swamys</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand-name">SWAMY'S <span style="font-size:18px;color:var(--yellow)">Chicken &amp; Chai · Stay saucy</span></span>
+    <span>Instagram: <a href="https://www.instagram.com/eat.swamys/">@eat.swamys</a></span>
+    <span>© 2026 Swamy's</span>
+  </div>
+</footer>
+</body>
+</html>
