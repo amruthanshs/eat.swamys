@@ -196,6 +196,8 @@
     .heat li { border-radius: 16px; padding: 22px 16px 20px; color: var(--dark); min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; }
     .heat .n { font-family: 'Bebas Neue', sans-serif; font-size: 54px; line-height: 1; }
     .heat .name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; line-height: 1; }
+    .heat-note { margin-top: 14px; font-size: 15px; }
+    .heat li.dare { outline: 3px dashed var(--orange); outline-offset: -6px; }
     .heat li:nth-child(1) { background: #FFF1C2; }
     .heat li:nth-child(2) { background: var(--yellow); }
     .heat li:nth-child(3) { background: #F8A15E; }
@@ -206,6 +208,7 @@
       .heat { grid-template-columns: 1fr; }
       .heat li { min-height: 0; flex-direction: row; align-items: center; gap: 18px; justify-content: flex-start; padding: 14px 18px; }
       .heat .n { font-size: 40px; width: 28px; }
+      .heat li.dare .n { width: auto; }
     }
 
     /* Drinks */
@@ -313,11 +316,11 @@
     <div class="ticker-track">
       <ul>
         <li>Chicken tenders</li><li>Popcorn paneer</li><li>Masala fries</li><li>Three sauces</li>
-        <li>Five heat levels</li><li>Stay saucy</li><li>Masala chai</li><li>Mango lassi shake</li><li>Masala chai shake</li>
+        <li>Four heat levels and a dare</li><li>Stay saucy</li><li>Masala chai</li><li>Mango lassi shake</li><li>Masala chai shake</li>
       </ul>
       <ul>
         <li>Chicken tenders</li><li>Popcorn paneer</li><li>Masala fries</li><li>Three sauces</li>
-        <li>Five heat levels</li><li>Stay saucy</li><li>Masala chai</li><li>Mango lassi shake</li><li>Masala chai shake</li>
+        <li>Four heat levels and a dare</li><li>Stay saucy</li><li>Masala chai</li><li>Mango lassi shake</li><li>Masala chai shake</li>
       </ul>
     </div>
   </div>
@@ -414,8 +417,9 @@
         <li><span class="n">2</span><span class="name">Mild</span></li>
         <li><span class="n">3</span><span class="name">Medium</span></li>
         <li><span class="n">4</span><span class="name">Spicy</span></li>
-        <li><span class="n">5</span><span class="name">Andhra Fire</span></li>
+        <li class="dare"><span class="n">Dare</span><span class="name">Andhra Fire</span></li>
       </ol>
+      <p class="heat-note">Levels 1 to 4 are the everyday ladder. Andhra Fire is the dare: only if you mean it.</p>
     </div>
   </section>
 
